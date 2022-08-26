@@ -1,20 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import Crypto from './screens/Crypto';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+const Stack = createStackNavigator();
+
+ const App = () => {
+   return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Crypto">
+        <Stack.Screen
+          name="Crypto"
+          component={Crypto}
+          options={{
+            title: 'Employee`s List', //Set Header Title
+            headerShown:false
+          }}
+        />
+        {/* <Stack.Screen
+          name="Details"
+          component={Details}
+          options={{
+            title: 'Employee`s Details', //Set Header Title
+            headerStyle: {
+              backgroundColor: '#f4511e', //Set Header color
+            },
+            headerTintColor: '#fff', //Set Header text color
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
+        /> */}
+
+      </Stack.Navigator>
+    </NavigationContainer>
+     
+   );
+ };
+ 
+ export default App;
+ 
