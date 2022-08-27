@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View, Dimensions} from 'react-native';
 import CryptoCard from "../components/CryptoCard";
+
+const { width, height } = Dimensions.get("window");
 
 const Crypto = ({navigation, route}) => {
 
@@ -35,8 +37,7 @@ const Crypto = ({navigation, route}) => {
             })
     }
 
-    console.log(arr)
-
+    console.log(arr.length)
     return (
         <View style={styles.container}>
         <View style={styles.titleWrapper}>
@@ -44,7 +45,14 @@ const Crypto = ({navigation, route}) => {
         </View>
         <View style={styles.divider}/>
 
-        <CryptoCard/>
+        <FlatList
+            data={arr}
+            renderItem={({ item,index }) => {
+                    return(
+                    <CryptoCard item={item} key={item.id}/>
+                    )
+                 }}
+          />
         </View>
     );
 }
